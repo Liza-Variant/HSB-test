@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<section style="padding:52px 20px 64px">
+  <div style="max-width:1180px; margin:0 auto">
+    <h2 style="font-size:clamp(24px,3.6vw,32px); margin:0 0 22px">{{ heading }}</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px">
+      <sc-for list="{{ items }}" as="a" hint-placeholder-count="3">
+        <div style="border:1px solid #dcdcdc; background:#fff; display:flex; flex-direction:column; cursor:pointer" style-hover="border-color:#111">
+          <div style="background:#b8b8b8; aspect-ratio:16/9; width:100%"></div>
+          <div style="padding:18px; display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:15px; font-weight:600; text-decoration:underline">{{ a.title }}</div>
+            <div style="font-size:13px; line-height:1.55; color:#3a3a3a">{{ a.text }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heading&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Relaterade artiklar&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;t1&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Kampanj&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;t2&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Börja bospara&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;t3&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;HSB: Sveriges nöjdaste kunder 2024&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const body = "Hos HSB köper du tillexempel alltid till fast pris. Läs mer om vad du kan förvänta dig hos oss.";
+    const titles = [this.props.t1 || "Kampanj", this.props.t2 || "Börja bospara", this.props.t3 || "HSB: Sveriges nöjdaste kunder 2024"];
+    return {
+      heading: this.props.heading || "Relaterade artiklar",
+      items: [
+        { title: titles[0], text: body },
+        { title: titles[1], text: body },
+        { title: titles[2], text: "HSB hamnar på förstaplats för nöjdaste kunder vid inflyttning." }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
